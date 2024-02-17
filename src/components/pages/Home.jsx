@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Carousel from "../Carousel";
 import Line from "../Line";
-import Button from "../Button";
+import ButtonRedirect from "../ButtonRedirect";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <Description>
           A brief description of the site and probably a redirect!
         </Description>
-        <Button text="Click here / Join Now" />
+        <ButtonRedirect path="" text="Click here / Join Now" />
       </StyledText>
       <Carousel />
       <Line top={"800px"} />
@@ -25,6 +25,7 @@ export default function Home() {
 const StyledText = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const StyledDiv = styled.div`
@@ -35,7 +36,7 @@ const StyledDiv = styled.div`
   align-content: center;
   justify-content: space-evenly;
   align-items: center;
-  padding-top: 350px;
+  padding-top: 200px;
 `;
 
 const Title = styled.h1`

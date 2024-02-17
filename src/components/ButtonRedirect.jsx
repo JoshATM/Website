@@ -1,8 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-export default function Button(props) {
-  return <StyledButton onClick={props.onClick}>{props.text}</StyledButton>;
+export default function ButtonRedirect(props) {
+  const navigate = useNavigate();
+  return (
+    <StyledButton
+      onClick={() => {
+        navigate(`${props.path}`);
+      }}
+    >
+      {props.text}
+    </StyledButton>
+  );
 }
 
 const StyledButton = styled.button`
