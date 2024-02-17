@@ -45,7 +45,7 @@ const StyledImage = styled.img`
 
 const ButtonContainer = styled.div`
   position: absolute;
-  bottom: 10px;
+  top: 250px;
   display: flex;
   justify-content: space-between;
   width: 100%;

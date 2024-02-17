@@ -30,7 +30,7 @@ const StyledText = styled.div`
 
 const StyledDiv = styled.div`
   display: flex;
-  height: 114px;
+  height: 500px;
   padding: 100px;
   flex-wrap: wrap;
   align-content: center;
