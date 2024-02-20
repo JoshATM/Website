@@ -11,7 +11,7 @@ export default function NavigationBar() {
     const handleScroll = () => {
       let moving = window.scrollY;
 
-      setVisible(position > moving);
+      setVisible(moving <= 10); // Remember to use window.ScrollTo(0, 10) to find that it works with the Header
       setPosition(moving);
     };
     window.addEventListener("scroll", handleScroll);
@@ -53,10 +53,10 @@ export default function NavigationBar() {
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/Page4");
+              navigate("/Login");
             }}
           >
-            Page 4
+            Login
           </StyledLink>
         </NavigationLinks>
       </StyledDiv>
@@ -84,6 +84,7 @@ const StyledDiv = styled.div`
   padding: 10px;
   justify-content: space-between;
   align-items: center;
+  z-index: 10000;
 `;
 
 const StyledLink = styled.a`

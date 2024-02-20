@@ -7,7 +7,7 @@ export default function ButtonRedirect(props) {
   return (
     <StyledButton
       onClick={() => {
-        navigate(`${props.path}`);
+        navigate("/" + props.path);
       }}
     >
       {props.text}

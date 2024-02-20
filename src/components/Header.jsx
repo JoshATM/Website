@@ -11,7 +11,7 @@ export default function NavigationBar() {
     const handleScroll = () => {
       let moving = window.scrollY;
 
-      setVisible(position > moving);
+      setVisible(moving <= 10); // Remember to use window.ScrollTo(0, 10) to find that it works with the MiniHeader
       setPosition(moving);
     };
     window.addEventListener("scroll", handleScroll);
@@ -32,31 +32,31 @@ export default function NavigationBar() {
         <NavigationLinks>
           <StyledLink
             onClick={() => {
-              navigate("/Page1");
+              navigate("/page1");
             }}
           >
             Page 1
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/Page2");
+              navigate("/page2");
             }}
           >
             Page 2
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/Page3");
+              navigate("/page3");
             }}
           >
             Page 3
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/Page4");
+              navigate("/login");
             }}
           >
-            Page 4
+            Login
           </StyledLink>
         </NavigationLinks>
       </StyledDiv>
@@ -83,20 +83,27 @@ const StyledDiv = styled.div`
   padding: 10px;
   justify-content: space-between;
   align-items: center;
+  z-index: 10000;
 `;
 
 const StyledLink = styled.a`
   font-size: 35px;
   background-color: transparent;
   border: transparent;
-  text-decoration: underline solid transparent;
   color: #cfd8dc;
-  // transition: text-decoration 0.5s ease;
+  transition: text-decoration 0.1s ease;
+
   &:hover {
-    text-decoration: underline solid black;
+    color: #ff5722;
+    cursor: pointer;
   }
   &:active {
     text-decoration: none;
+    color: #fff;
+  }
+  &::selection {
+    background: transparent;
+    color: #ff5722;
   }
 `;
 
