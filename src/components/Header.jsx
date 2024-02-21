@@ -46,10 +46,10 @@ export default function NavigationBar() {
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/page3");
+              navigate("/profile");
             }}
           >
-            Page 3
+            Profile
           </StyledLink>
           <StyledLink
             onClick={() => {

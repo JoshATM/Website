@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Page1 from "./components/pages/Page1";
 import Page2 from "./components/pages/Page2";
+import Profile from "./components/pages/Profile";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 
@@ -20,6 +21,7 @@ const App = () => {
         { path: "*", element: <PageNotFound /> },
         { path: "page1", element: <Page1 /> },
         { path: "page2", element: <Page2 /> },
+        { path: "profile", element: <Profile /> },
         { path: "register", element: <Register /> },
         { path: "login", element: <Login /> },
       ],
