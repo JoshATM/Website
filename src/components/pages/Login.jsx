@@ -57,11 +57,14 @@ const Link = styled.a`
 const StyledImage = styled.img`
   position: absolute;
   width: 50%;
-  height: 100%;
+  height: 97.9vh;
   object-fit: cover;
   z-index: -1;
   opacity: 0.5;
   filter: blur(5px);
+  @media (max-width: 700px) {
+    display: none !important;
+  }
 `;
 
 const InnerFormContainer = styled.div`
@@ -71,13 +74,19 @@ const InnerFormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 97.9vh;
+  @media (max-width: 700px) {
+    right: 50%;
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 25vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
 `;
 
 const Label = styled.label`

@@ -45,6 +45,13 @@ const CarouselContainer = styled.div`
   position: relative;
   width: 50%;
   height: 100%;
+  @media (max-width: 1650px) {
+    min-width: 100%;
+  }
+  @media (max-width: 700px) {
+    min-width: 100%;
+    padding: 0px;
+  }
 `;
 
 const StyledImage = styled.img`

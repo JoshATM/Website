@@ -10,6 +10,9 @@ export default function Profile() {
   const [phone, setPhone] = useState("123-456-7890");
   const [dob, setDob] = useState("01/01/2000");
   const [address, setAddress] = useState("1234 Example St, City, State, 12345");
+  const [profilePicture, setProfilePicture] = useState(
+    "https://via.placeholder.com/150"
+  );
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -19,14 +22,37 @@ export default function Profile() {
     setIsEditing(false);
   };
 
+  const handleProfilePictureChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      setProfilePicture(event.target.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <ProfileContainer>
       <Title>Person A Profile</Title>
       <Info>Photo</Info>
       <StyledImage
-        src="https://via.placeholder.com/150"
+        src={profilePicture}
         alt="Profile Picture"
+        onClick={() =>
+          isEditing && document.getElementById("profilePictureInput").click()
+        }
       />
+      {isEditing ? (
+        <StyledInput
+          id="profilePictureInput"
+          type="file"
+          onChange={handleProfilePictureChange}
+        />
+      ) : null}
       <Box>
         <InfoContainer>
           <Info>
@@ -140,6 +166,7 @@ const StyledImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #d34b22;
+  cursor: pointer;
 `;
 
 const ProfileContainer = styled.div`
@@ -166,6 +193,7 @@ const ProfileContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
+  z-index: 10;
   &:hover {
     box-shadow: 0 0 20px #d34b22;
   }

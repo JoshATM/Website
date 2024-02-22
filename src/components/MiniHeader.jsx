@@ -23,12 +23,11 @@ export default function NavigationBar() {
     <>
       <StyledDiv style={{ display: visible ? "none" : "flex" }}>
         <StyledLogo
+          src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg"
           onClick={() => {
             navigate("/");
           }}
-        >
-          Logo
-        </StyledLogo>
+        />
         <NavigationLinks>
           <StyledLink
             onClick={() => {
@@ -60,17 +59,27 @@ export default function NavigationBar() {
           </StyledLink>
         </NavigationLinks>
       </StyledDiv>
-      {/* <Footer /> */}
     </>
   );
 }
 
-const StyledLogo = styled.div`
-  font-size: 35px;
-  background-color: transparent;
-  border: transparent;
-  text-decoration: underline solid transparent;
-  color: #cfd8dc;
+const StyledLogo = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #d34b22;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(1);
+  }
+  &::selection {
+    background: transparent;
+  }
 `;
 
 const StyledDiv = styled.div`
@@ -80,11 +89,14 @@ const StyledDiv = styled.div`
   position: fixed;
   display: flex;
   background-color: #1e2529;
-  height: auto;
+  height: 50px;
   padding: 10px;
   justify-content: space-between;
   align-items: center;
   z-index: 10000;
+  @media (max-width: 700px) {
+    display: none !important;
+  }
 `;
 
 const StyledLink = styled.a`
