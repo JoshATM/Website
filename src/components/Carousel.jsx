@@ -50,7 +50,6 @@ const CarouselContainer = styled.div`
   }
   @media (max-width: 700px) {
     min-width: 100%;
-    padding: 0px;
   }
 `;
 
@@ -66,6 +65,9 @@ const DotContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  @media (max-width: 700px) {
+    bottom: -185px;
+  }
 `;
 
 const Dot = styled.div`

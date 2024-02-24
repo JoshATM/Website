@@ -9,12 +9,35 @@ export default function Register() {
   const Submit = (e) => {
     e.preventDefault();
     console.log("Form submitted");
+    localStorage.setItem("LoggedIn", true);
+    fetch("http://localhost:3001/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        FirstName: e.target.FirstName?.value,
+        LastName: e.target.LastName?.value,
+        Email: e.target.Email?.value,
+        DOB: e.target.DOB?.value,
+        tel: e.target.tel?.value,
+        password: e.target.password?.value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/page1");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   return (
     <>
       <StyledImage src={BackgroundImage} />
       <InnerFormContainer>
-        <Form>
+        <StyledDiv>
           <h1>Welcome to NAME</h1>
           <br />
           <Label htmlFor="FirstName">First Name</Label>
@@ -48,7 +71,6 @@ export default function Register() {
           <Label htmlFor="tel">Phone Number</Label>
           <Input
             type="tel"
-            pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
             id="tel"
             name="tel"
             placeholder="Enter Phone Number..."
@@ -70,7 +92,7 @@ export default function Register() {
           >
             Login
           </Link>
-        </Form>
+        </StyledDiv>
       </InnerFormContainer>
     </>
   );
@@ -108,7 +130,7 @@ const InnerFormContainer = styled.div`
   }
 `;
 
-const Form = styled.form`
+const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 25vw;

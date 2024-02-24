@@ -9,6 +9,25 @@ export default function Login() {
   const Submit = (e) => {
     e.preventDefault();
     console.log("Form submitted");
+    localStorage.setItem("LoggedIn", true);
+    fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Email: e.target.email?.value,
+        password: e.target.password?.value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/page1");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   return (
     <>

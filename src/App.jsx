@@ -12,6 +12,7 @@ import PageNotFound from "./components/pages/404";
 import GlobalComponents from "./components/GlobalComponents";
 
 const App = () => {
+  const isLoggedIn = localStorage.getItem("LoggedIn") === "true";
   const router = createBrowserRouter([
     {
       path: "/",
@@ -19,11 +20,11 @@ const App = () => {
       children: [
         { path: "", element: <Home /> },
         { path: "*", element: <PageNotFound /> },
-        { path: "page1", element: <Page1 /> },
-        { path: "page2", element: <Page2 /> },
-        { path: "profile", element: <Profile /> },
-        { path: "register", element: <Register /> },
-        { path: "login", element: <Login /> },
+        { path: "page1", element: isLoggedIn ? <Page1 /> : <Login /> },
+        { path: "page2", element: isLoggedIn ? <Page2 /> : <Login /> },
+        { path: "profile", element: isLoggedIn ? <Profile /> : <Login /> },
+        { path: "register", element: isLoggedIn ? <Profile /> : <Register /> },
+        { path: "login", element: isLoggedIn ? <Profile /> : <Login /> },
       ],
     },
   ]);

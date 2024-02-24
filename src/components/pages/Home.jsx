@@ -32,7 +32,7 @@ export default function Home() {
         <ButtonRedirect path="login" text="Join Now!" />
       </StyledText>
       <Carousel />
-      {windowWidth < 1650 ? <Line top={"1020px"} /> : <Line top={"800px"} />}
+      {windowWidth < 1650 ? <Line top={"1020px"} /> : <Line top={"825px"} />}
       <Line top={"1500px"} />
       <WhiteBackground></WhiteBackground>
       <Line top={"2000px"} />
@@ -60,6 +60,9 @@ const StyledImage = styled.img`
   filter: blur(5px);
   @media (max-width: 1650px) {
     max-height: 900px;
+  }
+  @media (max-width: 700px) {
+    max-height: 1100px;
   }
 `;
 
