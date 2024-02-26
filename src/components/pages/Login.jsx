@@ -24,6 +24,7 @@ export default function Login() {
       .then((data) => {
         console.log(data);
         navigate("/page1");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);

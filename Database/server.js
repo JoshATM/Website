@@ -86,6 +86,12 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.post("/saveContent", (req, res) => {
+  const { content } = req.body;
+  console.log(content);
+  res.status(200).json({ message: "Content saved successfully" });
+});
+
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
