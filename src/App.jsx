@@ -11,8 +11,9 @@ import PageNotFound from "./components/pages/404";
 
 import GlobalComponents from "./components/GlobalComponents";
 
+import { Toaster } from "react-hot-toast";
+
 const App = () => {
-  const isLoggedIn = localStorage.getItem("LoggedIn") === "true";
   const router = createBrowserRouter([
     { path: "*", element: <PageNotFound /> },
     {
@@ -20,17 +21,32 @@ const App = () => {
       element: <GlobalComponents />,
       children: [
         { path: "", element: <Home /> },
-        { path: "page1", element: isLoggedIn ? <Page1 /> : <Login /> },
-        { path: "materials", element: isLoggedIn ? <Materials /> : <Login /> },
-        { path: "profile", element: isLoggedIn ? <Profile /> : <Login /> },
-        { path: "register", element: isLoggedIn ? <Profile /> : <Register /> },
-        { path: "login", element: isLoggedIn ? <Profile /> : <Login /> },
+        { path: "page1", element: <Page1 /> },
+        { path: "materials", element: <Materials /> },
+        { path: "profile", element: <Profile /> },
+        { path: "register", element: <Register /> },
+        { path: "login", element: <Login /> },
       ],
     },
   ]);
 
   return (
     <>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
       <RouterProvider router={router} />
     </>
   );

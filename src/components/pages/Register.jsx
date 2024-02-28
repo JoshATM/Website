@@ -5,6 +5,10 @@ import BackgroundImage from "../../assets/images/ExampleBackgroundImage.webp";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const Test = () => {
+    toast.success("Test");
+  };
+
   const navigate = useNavigate();
   const Submit = (e) => {
     e.preventDefault();
