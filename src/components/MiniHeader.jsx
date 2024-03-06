@@ -11,7 +11,7 @@ export default function NavigationBar() {
     const handleScroll = () => {
       let moving = window.scrollY;
 
-      setVisible(moving <= 10); // Remember to use window.ScrollTo(0, 10) to find that it works with the Header
+      setVisible(moving > 10); // Remember to use window.ScrollTo(0, 10) to find that it works with the Header
       setPosition(moving);
     };
     window.addEventListener("scroll", handleScroll);
@@ -19,11 +19,15 @@ export default function NavigationBar() {
       window.removeEventListener("scroll", handleScroll);
     };
   });
+
+  const Profile = () => {
+    console.log("Profile");
+  };
   return (
     <>
-      <StyledDiv style={{ display: visible ? "none" : "flex" }}>
+      <StyledDiv style={{ display: visible ? "flex" : "none" }} id="Header">
         <StyledLogo
-          src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg"
+          src="https://via.placeholder.com/150"
           onClick={() => {
             navigate("/");
           }}
@@ -31,7 +35,7 @@ export default function NavigationBar() {
         <NavigationLinks>
           <StyledLink
             onClick={() => {
-              navigate("/Page1");
+              navigate("/page1");
             }}
           >
             Page 1
@@ -52,11 +56,12 @@ export default function NavigationBar() {
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/Login");
+              navigate("/login");
             }}
           >
             Login
           </StyledLink>
+          <StyledLink onClick={Profile}>Profile</StyledLink>
         </NavigationLinks>
       </StyledDiv>
     </>
@@ -64,22 +69,10 @@ export default function NavigationBar() {
 }
 
 const StyledLogo = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: auto;
+  height: 50px;
   object-fit: cover;
-  border: 3px solid #d34b22;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  &:hover {
-    transform: scale(1.1);
-  }
-  &:active {
-    transform: scale(1);
-  }
-  &::selection {
-    background: transparent;
-  }
 `;
 
 const StyledDiv = styled.div`
@@ -93,7 +86,7 @@ const StyledDiv = styled.div`
   padding: 10px;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
+  z-index: 999;
   @media (max-width: 700px) {
     display: none !important;
   }
@@ -103,14 +96,20 @@ const StyledLink = styled.a`
   font-size: 35px;
   background-color: transparent;
   border: transparent;
-  text-decoration: underline solid transparent;
   color: #cfd8dc;
-  // transition: text-decoration 0.5s ease;
+  transition: text-decoration 0.1s ease;
+
   &:hover {
-    text-decoration: underline solid black;
+    color: #ff5722;
+    cursor: pointer;
   }
   &:active {
     text-decoration: none;
+    color: #fff;
+  }
+  &::selection {
+    background: transparent;
+    color: #ff5722;
   }
 `;
 

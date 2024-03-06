@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import Darkmode from "./Darkmode";
 
 export default function NavigationBar() {
   const navigate = useNavigate();
 
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [showSettingsDropdown, setShowSettingsDropdown] = useState(false);
+
   const [position, setPosition] = useState(window.scrollY);
   const [visible, setVisible] = useState(true);
+
   useEffect(() => {
     const handleScroll = () => {
       let moving = window.scrollY;
@@ -19,16 +24,58 @@ export default function NavigationBar() {
       window.removeEventListener("scroll", handleScroll);
     };
   });
+
+  const ProfileSettings = () => {
+    setShowProfileDropdown(!showProfileDropdown);
+  };
+
+  const SettingsMenu = () => {
+    setShowSettingsDropdown(!showSettingsDropdown);
+  };
+
+  const LogoutFunction = () => {};
+
+  const ProfileSettingsDropdownMenu = () => {
+    return (
+      <>
+        <ProfileDropdownContainer>
+          <StyledLink
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Profile
+          </StyledLink>
+          <StyledLink onClick={SettingsMenu}>Settings</StyledLink>
+          {showSettingsDropdown && <SettingsMenuDropDown />}
+          <StyledLink onClick={LogoutFunction}>Logout</StyledLink>
+        </ProfileDropdownContainer>
+      </>
+    );
+  };
+
+  const SettingsMenuDropDown = () => {
+    return (
+      <>
+        <SettingsDropdownContainer>
+          <Darkmode />
+          <p>Text</p>
+        </SettingsDropdownContainer>
+      </>
+    );
+  };
+
   return (
     <>
-      <StyledDiv style={{ display: visible ? "flex" : "none" }} id="Header">
-        <StyledLogo
-          src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg"
-          onClick={() => {
-            navigate("/");
-          }}
-        />
+      <StyledDiv>
         <NavigationLinks>
+          <StyledLogo
+            src="https://via.placeholder.com/150"
+            alt="Logo"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <StyledLink
             onClick={() => {
               navigate("/page1");
@@ -45,18 +92,16 @@ export default function NavigationBar() {
           </StyledLink>
           <StyledLink
             onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            Profile
-          </StyledLink>
-          <StyledLink
-            onClick={() => {
               navigate("/login");
             }}
           >
             Login
           </StyledLink>
+          <ProfileImage
+            src="https://via.placeholder.com/150"
+            onClick={ProfileSettings}
+          />
+          {showProfileDropdown && <ProfileSettingsDropdownMenu />}
         </NavigationLinks>
       </StyledDiv>
     </>
@@ -64,22 +109,10 @@ export default function NavigationBar() {
 }
 
 const StyledLogo = styled.img`
-  width: 100px;
+  width: auto;
   height: 100px;
-  border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #d34b22;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  &:hover {
-    transform: scale(1.1);
-  }
-  &:active {
-    transform: scale(1);
-  }
-  &::selection {
-    background: transparent;
-  }
 `;
 
 const StyledDiv = styled.div`
@@ -128,4 +161,56 @@ const NavigationLinks = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+`;
+
+const ProfileImage = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #d34b22;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(1);
+  }
+  &::selection {
+    background: transparent;
+  }
+`;
+
+const ProfileDropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 125px;
+  right: 10px;
+  background-color: #1e2529;
+  color: white;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 5px;
+  border: 1px solid #ff5722;
+  width: 300px;
+  gap: 10px;
+  align-items: center;
+`;
+
+const SettingsDropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 270px;
+  background-color: #1e2529;
+  color: white;
+  padding: 10px;
+  z-index: 1001;
+  border-radius: 5px;
+  border: 1px solid #ff5722;
+  width: 300px;
+  gap: 10px;
 `;

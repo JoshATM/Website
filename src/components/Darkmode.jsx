@@ -52,8 +52,7 @@ const DarkModeButton = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  z-index: 10000;
-  position: fixed;
+  z-index: 1002;
   right: 0px;
   top: 0px;
 `;

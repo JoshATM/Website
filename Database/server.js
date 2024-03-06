@@ -1,10 +1,10 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
-import bodyParser from "body-parser"; // Import the body-parser package
+import bodyParser from "body-parser";
 const app = express();
 app.use(cors());
-app.use(bodyParser.json()); // Use body-parser to parse JSON request bodies
+app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: "127.0.0.1",
@@ -16,7 +16,6 @@ app.get("/", (_, res) => {
   res.send("Hello World");
 });
 
-// Create the "users" table if it doesn't exist
 db.query(
   "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, FirstName VARCHAR(255), LastName VARCHAR(255), Email VARCHAR(255), DOB DATE, tel VARCHAR(255), password VARCHAR(255))",
   (error) => {
@@ -90,6 +89,11 @@ app.post("/saveContent", (req, res) => {
   const { content } = req.body;
   console.log(content);
   res.status(200).json({ message: "Content saved successfully" });
+});
+
+app.post("/logout", (req, res) => {
+  localStorage.setItem("LoggedIn", false);
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 app.listen(3001, () => {

@@ -4,9 +4,8 @@ import Header from "./Header";
 import MiniHeader from "./MiniHeader";
 import MobileHeader from "./MobileHeader";
 // import Footer from "./Footer";
-import Darkmode from "./Darkmode";
 
-const unauthedRoutes = ["login", "register", ""];
+const unauthedRoutes = ["", "login", "register"];
 
 export default function GlobalComponents() {
   const location = useLocation();
@@ -29,7 +28,6 @@ export default function GlobalComponents() {
 const DisplayAll = () => {
   return (
     <>
-      <Darkmode />
       <Header />
       <MiniHeader />
       <MobileHeader />

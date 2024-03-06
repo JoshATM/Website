@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "../Button";
 import BackgroundImage from "../../assets/images/ExampleBackgroundImage.webp";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -23,10 +24,14 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        navigate("/page1");
-        window.location.reload();
+        localStorage.setItem("LoggedIn", true);
+        toast.success("Logged in successfully", { duration: 5000 })(() => {
+          navigate("/page1");
+          window.location.reload();
+        });
       })
       .catch((error) => {
+        toast.error("Error: " + error, { duration: 5000 });
         console.error("Error:", error);
       });
   };
