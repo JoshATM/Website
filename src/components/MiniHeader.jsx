@@ -93,7 +93,7 @@ const StyledDiv = styled.div`
   padding: 10px;
   justify-content: space-between;
   align-items: center;
-  z-index: 10000;
+  z-index: 1000;
   @media (max-width: 700px) {
     display: none !important;
   }

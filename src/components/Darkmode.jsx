@@ -1,49 +1,59 @@
 import React, { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
-export default function Darkmode() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+// Define your themes
+const themes = {
+  light: {
+    backgroundColor: "#f2f2f2",
+    textColor: "#000",
+  },
+  dark: {
+    backgroundColor: "#263238",
+    textColor: "#cfd8dc",
+  },
+};
 
-  // Toggle the dark mode
+export default function DarkMode() {
+  const [darkMode, setDarkMode] = useState(false);
+
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setDarkMode(!darkMode);
   };
 
+  const GlobalStyle = createGlobalStyle`
+        body {
+            background-color: ${(props) =>
+              props.theme
+                ? themes.dark.backgroundColor
+                : themes.light.backgroundColor};
+            color: ${(props) =>
+              props.theme ? themes.dark.textColor : themes.light.textColor};
+        }
+    `;
+
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <Container>
-        <Button onClick={toggleDarkMode}>
-          {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        </Button>
-      </Container>
-    </ThemeProvider>
+    <>
+      <GlobalStyle theme={darkMode} />
+      <DarkModeButton darkMode={darkMode} onClick={toggleDarkMode}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </DarkModeButton>
+    </>
   );
 }
 
-// Define the light and dark themes
-const lightTheme = {
-  background: "#ffffff",
-  text: "#000000",
-};
-
-const darkTheme = {
-  background: "#000000",
-  text: "#ffffff",
-};
-
-// Create a styled component for the container
-const Container = styled.div`
-  background: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.text};
-  padding: 20px;
-`;
-
-// Create a styled component for the button
-const Button = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  font-size: 12px;
+const DarkModeButton = styled.button`
+  background-color: ${(props) =>
+    props.darkMode
+      ? themes.light.backgroundColor
+      : themes.dark.backgroundColor};
+  color: ${(props) =>
+    props.darkMode ? themes.light.textColor : themes.dark.textColor};
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
   z-index: 10000;
+  position: fixed;
+  right: 0px;
+  top: 0px;
 `;
