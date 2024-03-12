@@ -28,6 +28,7 @@ export default function DarkMode() {
                 : themes.light.backgroundColor};
             color: ${(props) =>
               props.theme ? themes.dark.textColor : themes.light.textColor};
+            transition: all 0.25s linear;
         }
     `;
 
